@@ -1,0 +1,8 @@
+Options -Indexes -MultiViews +FollowSymLinks
+RewriteEngine On
+
+RewriteBase /
+
+#ohjaa kaikki sivut index.php-sivulle
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ storybook/index.php [QSA]

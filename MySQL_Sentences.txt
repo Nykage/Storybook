@@ -1,0 +1,29 @@
+CREATE TABLE users (
+	account_id int(6) NOT NULL AUTO_INCREMENT,
+    last_name varchar(30),
+    first_name varchar(30),
+    account_name varchar(30) NOT NULL,
+    account_passwd varchar(100) NOT NULL,
+    account_reg_time timestamp NOT NULL,
+    account_enabled tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+    PRIMARY KEY (account_id)
+);
+
+CREATE TABLE stories (
+    story_id int(10) NOT NULL AUTO_INCREMENT,
+    account_id int(10) NOT NULL,
+    headline varchar(100),
+    article text,
+    hidedate date NOT NULL,
+    published date NOT NULL,
+    PRIMARY KEY (story_id),
+    FOREIGN KEY (account_id) REFERENCES users(account_id)
+);
+
+CREATE TABLE account_sessions (
+	session_id varchar(255) NOT NULL,
+    account_id int(10) NOT NULL,
+    login_time timestamp NOT NULL,
+    PRIMARY KEY (session_id),
+    FOREIGN KEY (account_id) REFERENCES users(account_id)
+);
